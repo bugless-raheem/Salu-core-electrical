@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@theme inline{
+ --color-gold:#C9A227;--color-light-gray:#F4F4F4;--color-heading:#111111;
+ --color-body:#444444;--color-muted:#6B6B6B;--color-line:#E5E5E5;
+ --font-display:var(--font-fraunces),Georgia,serif;--font-sans:var(--font-inter),system-ui,sans-serif;}
+html{scroll-padding-top:72px}
+body{background:#FFFFFF;color:var(--color-body);font-family:var(--font-sans);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--font-display);color:var(--color-heading);letter-spacing:-.01em}
+::selection{background:rgba(201,162,39,.2);color:var(--color-heading)}
+:focus-visible{outline:2px solid var(--color-gold);outline-offset:3px}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
