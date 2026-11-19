@@ -51,36 +51,29 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error(`FormSubmit returned HTTP ${response.status}`);
+        throw new Error("Email submission failed");
       }
 
       const payload: unknown = await response.json();
       if (typeof payload !== "object" || payload === null || Array.isArray(payload)) {
-        throw new Error("FormSubmit returned an invalid response.");
+        throw new Error("Email submission failed");
       }
 
       const result = payload as Record<string, unknown>;
       if (result.success !== "true" && result.success !== true) {
-        throw new Error(
-          typeof result.message === "string"
-            ? result.message
-            : "FormSubmit rejected the enquiry.",
-        );
+        throw new Error("Email submission failed");
       }
 
       setStatus({
         kind: "ok",
-        msg: "Your request has been sent. We'll be in touch soon.",
+        msg: "Your request has been sent. We'll be in touch soon.!!",
       });
       reset();
     } catch (error) {
       console.error("FormSubmit email submission failed:", error);
       setStatus({
         kind: "error",
-        msg:
-          error instanceof Error
-            ? `FormSubmit could not send your enquiry: ${error.message}`
-            : "FormSubmit could not send your enquiry. Please try WhatsApp instead.",
+        msg: "Sorry, your message was not sent.",
       });
     }
   });
@@ -157,7 +150,7 @@ export default function ContactForm() {
           Send via WhatsApp
         </button>
       </div>
-      <div aria-live="polite">{status.msg && <p className={`border-l-2 px-4 py-3 text-sm ${status.kind === "error" ? "border-red-700 bg-red-50 text-red-800" : "border-gold bg-gold/5 text-heading"}`}>{status.msg}</p>}</div>
+      <div aria-live="polite">{status.msg && <p className={`border-l-2 px-4 py-3 text-sm ${status.kind === "error" ? "border-red-700 bg-red-50 text-red-800" : status.kind === "ok" ? "border-green-700 bg-green-50 text-green-800" : "border-gold bg-gold/5 text-heading"}`}>{status.msg}</p>}</div>
     </form>
   );
 }

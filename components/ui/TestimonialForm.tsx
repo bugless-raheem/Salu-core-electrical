@@ -63,8 +63,7 @@ export default function TestimonialForm() {
       console.error("Testimonial submission failed:", error);
       setStatus({
         kind: "error",
-        message:
-          "Your testimonial could not be sent. Please try again later.",
+        message: "Sorry, your message was not sent.",
       });
     } finally {
       setSending(false);
@@ -155,7 +154,7 @@ export default function TestimonialForm() {
             className={`border-l-2 px-4 py-3 text-sm ${
               status.kind === "error"
                 ? "border-red-700 bg-red-50 text-red-800"
-                : "border-gold bg-gold/5 text-heading"
+                : "border-green-700 bg-green-50 text-green-800"
             }`}
           >
             {status.message}
