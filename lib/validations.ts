@@ -17,7 +17,7 @@ export const testimonialSchema = z.object({
 });
 export type Testimonial = z.infer<typeof testimonialSchema>;
 export const WHATSAPP_NUMBER = "2349056186734";
-export const EMAIL = "salucoreelectrical@gmail.com";
+export const EMAIL = "bugggy10100@gmail.com";
 export function whatsappUrl(d: Enquiry) {
   const msg = `Hello SAL U CORE-ELECTRICAL,\n\nI would like to make a project enquiry.\n\nCUSTOMER DETAILS:\nName: ${d.name}\nPhone: ${d.phone}\nEmail: ${d.email}\n\nPROJECT DETAILS:\nService Required: ${d.service}\nProject Location: ${d.location}\nProject Type: ${d.type}\n\nPROJECT DESCRIPTION:\n${d.description}\n\nI would like to discuss this project and request a quote.\n\nThank you.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
